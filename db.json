@@ -1,0 +1,30 @@
+{
+  "videos": [
+    {
+      "id": 1,
+      "titulo": "Como utilizar el Display block, inline, inline-block",
+      "capa": "https://res.cloudinary.com/dmt9srumx/image/upload/v1718309843/aluraFlix/css-display_wljcyp.jpg",
+      "link": "https://www.youtube.com/embed/AG2QssLpQzI?si=6Yn355wcxAqU7_Ld",
+      "descripcion": "En este video aprenderemos a utilizar las propiedades display block, inline y inline-block para controlar el flujo de los elementos en la página web.",
+      "categoria": "Front End"
+    },
+    {
+      "id": 2,
+      "titulo": "Aprende a pasar una Prueba Técnica de React. Entiende useMemo, useCallback y useRef [Curso de React]",
+      "capa": "https://res.cloudinary.com/dmt9srumx/image/upload/v1718307681/aluraFlix/midudev-prueba-tecnica_fprpqn.jpg",
+      "link": "https://www.youtube.com/watch?v=GOEiMwDJ3lc&list=PLUofhDIg_38q4D0xNWp7FEHOTcZhjWJ29&index=5",
+      "descripcion": "¡Guía para pasar paso a paso una Prueba Técnica Real de React! Buenas prácticas, ideas, trucos y consejos. Además, aprenderás para qué sirven y cómo usar los hooks useMemo, useCallback y useRef de React.",
+      "categoria": "Front End"
+    }
+  ],
+  "categorias": [
+    {
+      "categoria": "Front End",
+      "color": "#6BD1FF"
+    },
+    {
+      "categoria": "Back End",
+      "color": "#00C86F"
+    }
+  ]
+}

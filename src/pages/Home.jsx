@@ -1,5 +1,9 @@
+import Banner from '../components/Banner'
+
 export default function Home() {
   return (
-    <h1>Home</h1>
+    <main className='md:pt-[125px] flex-grow'>
+      <Banner />
+    </main>
   )
 }

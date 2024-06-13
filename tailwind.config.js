@@ -8,6 +8,9 @@ export default {
     extend: {
       boxShadow: {
         custom: '0px 0px 12px 4px #2271D1 inset'
+      },
+      backgroundImage: {
+        banner: "url('/img/banner.jpg')"
       }
     }
   },

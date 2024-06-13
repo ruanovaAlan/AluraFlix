@@ -11,8 +11,8 @@ export default function Button({ title, isActive, type }) {
     <button
       className={
         `flex items-center justify-evenly text-lg font-bold 
-        ${isActive ? 'w-[13rem] md:shadow-custom bg-[#2271d13d] text-[#2271D1] border-[#2271D1]' : 'text-[#F5F5F5] border-[#F5F5F5] border-0 md:border-[2px]'} 
-        border-[2px] md:w-[180px] h-[54px] rounded-[20px] md:rounded-[10px] md:bg-transparent`
+        ${isActive ? 'w-[13rem] md:shadow-custom bg-[#2271d13d] text-[#2271D1] border-[2px] border-[#2271D1]' : 'text-[#F5F5F5] border-0 md:border-[2px] border-[#F5F5F5]'} 
+        md:w-[180px] h-[54px] rounded-[20px] md:rounded-[10px] md:bg-transparent`
       }
     >
       <img className={`${isActive ? 'h-[30px]' : 'h-[45px]'} md:hidden`} src={isActive ? iconActivo : icon} alt={`${type} button`} />
