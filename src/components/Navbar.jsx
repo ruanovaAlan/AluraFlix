@@ -10,7 +10,7 @@ export default function Navbar() {
     <nav
       style={{ backgroundColor: navBg, boxShadow: '0px 5px 29px 0px rgba(34, 113, 209, 0.70)' }}
       className='flex justify-center md:justify-between
-      items-center absolute md:top-0 bottom-0 left-0 right-0
+      items-center fixed bottom-0 md:top-0
       h-[100px] md:h-[125px] w-[100%] border-t-[4px] md:border-b-[4px]
       border-[#2271D1] md:border-t-0'
     >

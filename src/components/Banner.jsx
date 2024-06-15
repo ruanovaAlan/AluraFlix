@@ -5,7 +5,6 @@ export default function Banner() {
   const randomIndex = getRandomIndex(videosData.videos.length)
   const video = videosData.videos[randomIndex]
   const color = videosData.categorias.find(categoria => categoria.categoria === video.categoria).color
-  console.log(color)
 
   return (
     <section className='hidden md:flex md:bg-banner md:h-[530px] text-white'>
@@ -13,16 +12,16 @@ export default function Banner() {
         <div className='flex flex-col justify-center ps-8 w-1/2 h-full'>
           <h1
             style={{ backgroundColor: color }}
-            className='w-2/4 p-2 mb-6 rounded-md text-center text-xl font-bold'
+            className='w-[40%] p-2 mb-6 rounded-lg text-center text-3xl font-bold'
           >{video.categoria.toUpperCase()}
           </h1>
-          <h2 className='w-[95%] text-lg mb-2'>{video.titulo}</h2>
-          <p className='text-xs'>{video.descripcion}</p>
+          <h2 className='w-[95%] text-2xl mb-2'>{video.titulo}</h2>
+          <p className='text-sm line-clamp-6'>{video.descripcion}</p>
         </div>
         <div className='flex justify-center items-center  w-1/2 h-full'>
           <a
             href={video.link} target='_blank' rel='noreferrer'
-            className='w-[80%] h-2/4 rounded-md shadow-custom'
+            className='w-[80%] h-[50%] rounded-xl shadow-custom'
             style={
               {
                 background: `url(${video.capa})  lightgray 50% / cover no-repeat`,
