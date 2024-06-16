@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
+import NewVideo from './pages/NewVideo'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 
@@ -10,6 +11,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/nuevo-video' element={<NewVideo />} />
         </Routes>
         <Footer />
       </BrowserRouter>
