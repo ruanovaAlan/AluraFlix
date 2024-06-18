@@ -1,10 +1,8 @@
-import videosData from '../../db.json'
-
-export default function Banner() {
+export default function Banner({ videosData, categorias }) {
   const getRandomIndex = (max) => Math.floor(Math.random() * max)
-  const randomIndex = getRandomIndex(videosData.videos.length)
-  const video = videosData.videos[randomIndex]
-  const color = videosData.categorias.find(categoria => categoria.categoria === video.categoria).color
+  const randomIndex = getRandomIndex(videosData.length)
+  const video = videosData[randomIndex]
+  const color = categorias.find(categoria => categoria.categoria === video.categoria).color
 
   return (
     <section className='hidden md:flex md:bg-banner md:h-[530px] text-white'>
