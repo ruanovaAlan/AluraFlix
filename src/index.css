@@ -6,3 +6,7 @@ html {
   font-family: "Roboto", sans-serif;
   background-color: rgba(0, 0, 0, 0.90);
 }
+
+.input-error::placeholder {
+  color: #E53935;
+}
