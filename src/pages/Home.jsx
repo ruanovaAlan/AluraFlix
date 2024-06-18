@@ -1,21 +1,10 @@
 import Banner from '../components/Banner'
 import Cards from '../components/Cards/Cards'
-import { useState, useEffect } from 'react'
 import loader from '../assets/loader.svg'
+import useFetchData from '../hooks/useFetchData'
 
 export default function Home() {
-  const [videos, setVideos] = useState([])
-  const [categorias, setCategorias] = useState([])
-
-  useEffect(() => {
-    fetch('http://localhost:3000/videos')
-      .then(res => res.json())
-      .then(data => setVideos(data))
-
-    fetch('http://localhost:3000/categorias')
-      .then(res => res.json())
-      .then(data => setCategorias(data))
-  }, [])
+  const { videos, categorias } = useFetchData()
 
   return (
     <main className='pb-[50px] md:pt-[125px] flex-grow'>
