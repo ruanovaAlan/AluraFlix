@@ -3,7 +3,11 @@ import editar from '../../assets/editar.png'
 
 const buttonStyling = 'flex items-center gap-3 hover:text-gray-300'
 
-export default function Card({ video, color }) {
+export default function Card({ video, color, onDelete }) {
+  const handleDelete = () => {
+    onDelete(video.id)
+  }
+
   return (
     <div className='min-w-[100%] md:min-w-[30%] md:w-[19rem] h-[15rem] mb-5'>
       <a
@@ -25,7 +29,7 @@ export default function Card({ video, color }) {
         }}
         className='flex justify-around items-center h-[20%] w-full font-bold text-sm text-white bg-black rounded-b-xl'
       >
-        <button className={buttonStyling}>
+        <button className={buttonStyling} onClick={handleDelete}>
           <img className='w-[1.5rem]' src={borrar} alt='' />
           <span>BORRAR</span>
         </button>

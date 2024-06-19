@@ -14,5 +14,5 @@ export default function useFetchData() {
       .then(data => setCategorias(data))
   }, [])
 
-  return { videos, categorias }
+  return { videos, categorias, setVideos }
 }
