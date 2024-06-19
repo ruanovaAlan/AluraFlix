@@ -1,6 +1,7 @@
 import Select from 'react-select'
 import categorias from '../../db.json'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const options = categorias.categorias.map(categoria => ({
   value: categoria.categoria,
@@ -17,6 +18,8 @@ export default function Form() {
   })
 
   const [errores, setErrores] = useState({})
+
+  const navigate = useNavigate()
 
   const INPUT_STYLES = (name) => {
     return `border-[3px] focus:outline-none focus:border-current ${errores[name] ? 'border-[#E53935] hover:border-[#E53935] input-error' : 'border-[#262626] hover:border-[#ccc]'}  rounded-lg bg-transparent p-2 mt-3`
@@ -86,8 +89,12 @@ export default function Form() {
     setErrores(validationErrors)
 
     if (Object.keys(validationErrors).length === 0) {
-      console.log('Formulario enviado')
-      handleClear(e)
+      fetch('http://localhost:3000/videos', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(nuevoVideo)
+      }).then(res => res.json())
+        .then(navigate('/'))
     }
   }
 

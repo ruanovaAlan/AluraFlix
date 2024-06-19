@@ -22,7 +22,7 @@ export default function Banner({ videosData, categorias }) {
             className='w-[80%] h-[50%] rounded-xl shadow-custom'
             style={
               {
-                background: `url(${video.capa})  lightgray 50% / cover no-repeat`,
+                background: `url(${video.imagen})  lightgray 50% / cover no-repeat`,
                 border: `3px solid ${color}`,
                 boxShadow: `0px 0px 17px 8px ${color} inset`
               }

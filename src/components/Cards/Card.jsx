@@ -11,7 +11,7 @@ export default function Card({ video, color }) {
         target='_blank'
         className='h-[80%] w-full block rounded-t-xl'
         style={{
-          background: `url(${video.capa}) no-repeat center center / cover, lightgray`,
+          background: `url(${video.imagen}) no-repeat center center / cover, lightgray`,
           border: `5px solid ${color}`,
           boxShadow: `0px 0px 17px 8px ${color} inset`
         }} rel='noreferrer'
