@@ -1,17 +1,25 @@
 import borrar from '../../assets/borrar.png'
 import editar from '../../assets/editar.png'
+import { useContext } from 'react'
+import { VideosContext } from '../../context/videosContext'
 
 const buttonStyling = 'flex items-center gap-3 hover:text-gray-300'
 
 export default function Card({ video, color, onDelete }) {
+  const { setSelectedVideo } = useContext(VideosContext)
+
   const handleDelete = () => {
     onDelete(video.id)
+  }
+
+  const handleEdit = () => {
+    setSelectedVideo(video)
   }
 
   return (
     <div className='min-w-[100%] md:min-w-[30%] md:w-[19rem] h-[15rem] mb-5'>
       <a
-        href={video.link}
+        href={video.video}
         target='_blank'
         className='h-[80%] w-full block rounded-t-xl'
         style={{
@@ -33,7 +41,7 @@ export default function Card({ video, color, onDelete }) {
           <img className='w-[1.5rem]' src={borrar} alt='' />
           <span>BORRAR</span>
         </button>
-        <button className={buttonStyling}>
+        <button className={buttonStyling} onClick={handleEdit}>
           <img className='w-[1.5rem]' src={editar} alt='' />
           <span>EDITAR</span>
         </button>

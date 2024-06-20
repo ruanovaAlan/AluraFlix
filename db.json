@@ -4,7 +4,7 @@
       "id": "1",
       "titulo": "Como utilizar el Display block, inline, inline-block",
       "imagen": "https://res.cloudinary.com/dmt9srumx/image/upload/v1718309843/aluraFlix/css-display_wljcyp.jpg",
-      "link": "https://www.youtube.com/watch?v=AG2QssLpQzI&t=3s",
+      "video": "https://www.youtube.com/watch?v=AG2QssLpQzI&t=3s",
       "descripcion": "En este video aprenderemos a utilizar las propiedades display block, inline y inline-block para controlar el flujo de los elementos en la página web.",
       "categoria": "Front End"
     },
@@ -12,7 +12,7 @@
       "id": "2",
       "titulo": "Aprende a pasar una Prueba Técnica de React. Entiende useMemo, useCallback y useRef [Curso de React]",
       "imagen": "https://res.cloudinary.com/dmt9srumx/image/upload/v1718307681/aluraFlix/midudev-prueba-tecnica_fprpqn.jpg",
-      "link": "https://www.youtube.com/watch?v=GOEiMwDJ3lc&list=PLUofhDIg_38q4D0xNWp7FEHOTcZhjWJ29&index=5",
+      "video": "https://www.youtube.com/watch?v=GOEiMwDJ3lc&list=PLUofhDIg_38q4D0xNWp7FEHOTcZhjWJ29&index=5",
       "descripcion": "¡Guía para pasar paso a paso una Prueba Técnica Real de React! Buenas prácticas, ideas, trucos y consejos. Además, aprenderás para qué sirven y cómo usar los hooks useMemo, useCallback y useRef de React.",
       "categoria": "Front End"
     },
@@ -20,7 +20,7 @@
       "id": "3",
       "titulo": "Nodejs Curso Práctico desde Cero (Javascript en el Backend)",
       "imagen": "https://res.cloudinary.com/dmt9srumx/image/upload/v1718415565/aluraFlix/nodejs_mfpg4z.jpg",
-      "link": "https://www.youtube.com/watch?v=i3OdKwuBjeM",
+      "video": "https://www.youtube.com/watch?v=i3OdKwuBjeM",
       "descripcion": "Este es un curso de nodejs enfocado en desarrolladores web Frontend principiantes que ya conocen Javascript y HTML, y ahora quieren empezar con su primer lenguaje de backend. En este curso podras usar todo lo que ya conoces de Javascript del navegador pero ahora usado en la creacion de aplicaciones de servidor. Nodejs es un entorno de ejecución de Javascript o Javascript runtime environment el cual permite ejecutar código no bloqueante en el backend usando Javascript como lenguaje para poder crear herramientas como aplicaciones de consola (CLI), codigo de servidor, aplicaciones desktop o aplicaciones moviles.",
       "categoria": "Back End"
     },

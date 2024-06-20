@@ -1,10 +1,11 @@
 import Banner from '../components/Banner'
 import Cards from '../components/Cards/Cards'
-import useFetchData from '../hooks/useFetchData'
+import { useContext } from 'react'
+import { VideosContext } from '../context/videosContext'
 import useDeleteVideo from '../hooks/useDeleteVideo'
 
 export default function Home() {
-  const { videos, categorias, setVideos } = useFetchData()
+  const { videos, categorias, setVideos } = useContext(VideosContext)
   const handleDelete = useDeleteVideo(setVideos)
 
   return (

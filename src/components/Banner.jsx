@@ -18,7 +18,7 @@ export default function Banner({ videosData, categorias }) {
         </div>
         <div className='flex justify-center items-center  w-1/2 h-full'>
           <a
-            href={video.link} target='_blank' rel='noreferrer'
+            href={video.video} target='_blank' rel='noreferrer'
             className='w-[80%] h-[50%] rounded-xl shadow-custom'
             style={
               {
