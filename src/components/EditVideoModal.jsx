@@ -14,8 +14,8 @@ export default function EditVideoModal({ video }) {
           <dialog
             open={!!selectedVideo}
             onClose={() => setSelectedVideo(null)}
-            className='flex flex-col justify-between items-center h-[95%] w-[90%] md:w-[50%] bg-[#03122F]
-            top-3 md:top-[5%] rounded-xl shrink-0 px-2 md:px-14 py-10 border-[5px] border-[#6BD1FF]'
+            className='flex flex-col justify-between items-center max-h-[95%] w-[90%] md:w-[50%] bg-[#03122F]
+            top-[5%] md:top-[5%] rounded-xl shrink-0 overflow-y-auto px-2 md:px-14 py-10 border-[5px] border-[#6BD1FF]'
           >
             <h1 className='text-[#2271D1] text-2xl md:text-4xl font-bold'>EDITAR CARD:</h1>
             <form method='dialog'>

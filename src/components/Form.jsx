@@ -1,7 +1,11 @@
 import Select from 'react-select'
 import categorias from '../../db.json'
-import { useState } from 'react'
+import InputForm from './InputForm.jsx'
+import ButtonForm from './ButtonForm.jsx'
+import { useState, useContext } from 'react'
+import { VideosContext } from '../context/videosContext'
 import { useNavigate } from 'react-router-dom'
+import { validateForm, clearForm, SELECT_STYLES, INPUT_STYLES } from '../utils/index.js'
 
 const options = categorias.categorias.map(categoria => ({
   value: categoria.categoria,
@@ -16,46 +20,10 @@ export default function Form() {
     video: '',
     categoria: ''
   })
-
   const [errores, setErrores] = useState({})
+  const { setVideos } = useContext(VideosContext)
 
   const navigate = useNavigate()
-
-  const INPUT_STYLES = (name) => {
-    return `border-[3px] focus:outline-none focus:border-current ${errores[name] ? 'border-[#E53935] hover:border-[#E53935] input-error' : 'border-[#262626] hover:border-[#ccc]'}  rounded-lg bg-transparent p-2 mt-3`
-  }
-
-  const SELECT_STYLES = {
-    control: (base) => ({
-      ...base,
-      backgroundColor: 'transparent',
-      borderRadius: '8px',
-      border: `3px solid ${errores.categoria ? '#E53935' : '#262626'} `,
-      boxShadow: 'none',
-      '&:hover': {
-        border: `3px solid ${errores.categoria ? '#E53935' : '#ccc'} `
-      },
-      height: '44px'
-    }),
-    menu: (base) => ({
-      ...base,
-      backgroundColor: '#262626'
-    }),
-    option: (base, { isFocused }) => ({
-      ...base,
-      backgroundColor: isFocused ? '#393535' : 'transparent',
-      color: 'white',
-      borderRadius: '8px'
-    }),
-    singleValue: (base) => ({
-      ...base,
-      color: 'white'
-    }),
-    placeholder: (base) => ({
-      ...base,
-      color: errores.categoria ? '#E53935' : '#A5A5A5'
-    })
-  }
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -68,24 +36,13 @@ export default function Form() {
 
   const handleClear = (e) => {
     e.preventDefault()
-    setNuevoVideo({
-      titulo: '',
-      descripcion: '',
-      imagen: '',
-      video: '',
-      categoria: ''
-    })
+    clearForm(setNuevoVideo)
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const validationErrors = {}
+    const validationErrors = validateForm(nuevoVideo)
 
-    Object.entries(nuevoVideo).forEach(([key, value]) => {
-      if (!value.trim()) {
-        validationErrors[key] = `El campo ${key} es obligatorio`
-      }
-    })
     setErrores(validationErrors)
 
     if (Object.keys(validationErrors).length === 0) {
@@ -94,7 +51,10 @@ export default function Form() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(nuevoVideo)
       }).then(res => res.json())
-        .then(navigate('/'))
+        .then(data => {
+          navigate('/')
+          setVideos(prevVideos => [...prevVideos, data])
+        })
     }
   }
 
@@ -103,15 +63,8 @@ export default function Form() {
       <h3 className='text-xl font-bold border-y-4 border-[#262626] py-4'>Crear Tarjeta</h3>
 
       <div className='flex flex-col md:flex-row gap-4 w-full'>
-        <div className='flex flex-col w-full md:w-[60%]'>
-          <label htmlFor='titulo' className={`mt-4 ${errores.titulo ? 'text-[#E53935]' : 'text-white'}`}>Título</label>
-          <input
-            type='text' id='titulo' name='titulo' value={nuevoVideo.titulo} onChange={handleChange}
-            placeholder={errores.titulo ? errores.titulo : 'Ingrese el título'}
-            className={`w-full ${INPUT_STYLES('titulo')}`}
-          />
-        </div>
-        <div className='flex flex-col w-full md:w-[60%]'>
+        <InputForm name='titulo' type='text' errores={errores} nuevoVideo={nuevoVideo.titulo} handleChange={handleChange} placeholder='Ingrese el título' />
+        <div className='flex flex-col w-full md:w-[50%]'>
           <label htmlFor='categoria' className={`mt-4 ${errores.categoria ? 'text-[#E53935]' : 'text-white'}`}>Categoría</label>
           <Select
             name='categoria'
@@ -119,28 +72,14 @@ export default function Form() {
             onChange={handleSelectChange}
             placeholder={errores.categoria ? errores.categoria : 'Seleccione una categoría'}
             options={options} className='w-full mt-3'
-            styles={SELECT_STYLES}
+            styles={SELECT_STYLES(errores)}
           />
         </div>
       </div>
 
       <div className='flex flex-col md:flex-row gap-4 w-full mt-4'>
-        <div className='flex flex-col w-full md:w-[50%]'>
-          <label htmlFor='imagen' className={`mt-4 ${errores.imagen ? 'text-[#E53935]' : 'text-white'}`}>Imagen</label>
-          <input
-            type='text' id='imagen' name='imagen' value={nuevoVideo.imagen} onChange={handleChange}
-            placeholder={errores.imagen ? errores.imagen : 'Ingrese el enlace de la imagen'}
-            className={`w-full ${INPUT_STYLES('imagen')}`}
-          />
-        </div>
-        <div className='flex flex-col w-full md:w-[50%]'>
-          <label htmlFor='video' className={`mt-4 ${errores.video ? 'text-[#E53935]' : 'text-white'}`}>Video</label>
-          <input
-            id='video' name='video' value={nuevoVideo.video} onChange={handleChange}
-            placeholder={errores.video ? errores.video : 'Ingrese el enlace del video'}
-            className={`w-full ${INPUT_STYLES('video')}`}
-          />
-        </div>
+        <InputForm name='imagen' type='url' errores={errores} nuevoVideo={nuevoVideo.imagen} handleChange={handleChange} placeholder='Ingrese el enlace de la imagen' />
+        <InputForm name='video' type='url' errores={errores} nuevoVideo={nuevoVideo.video} handleChange={handleChange} placeholder='Ingrese el enlace del video' />
       </div>
 
       <div className='flex flex-col w-full mt-8'>
@@ -148,21 +87,13 @@ export default function Form() {
         <textarea
           value={nuevoVideo.descripcion} name='descripcion' id='descripcion' onChange={handleChange} cols='20' rows='7'
           placeholder={errores.descripcion ? errores.descripcion : '¿De qué trata el video?'}
-          className={`w-full md:w-[70%] ${INPUT_STYLES('descripcion')}`}
+          className={`w-full md:w-[70%] ${INPUT_STYLES('descripcion', errores)}`}
         />
       </div>
 
       <div className='flex flex-col items-center md:items-start md:flex-row gap-6 mt-8 pb-[120px] md:pb-6'>
-        <button
-          onClick={handleSubmit}
-          className='px-6 py-2 w-[50%] md:w-[20%] border-[3px] border-[#2271D1] hover:border-[#376195] rounded-lg'
-        >GUARDAR
-        </button>
-        <button
-          onClick={handleClear}
-          className='px-6 py-2 w-[50%] md:w-[20%] border-[3px] border-[#F5F5F5] hover:border-[#9a9a9a] rounded-lg'
-        >LIMPIAR
-        </button>
+        <ButtonForm onClick={handleSubmit} saveVideo>GUARDAR</ButtonForm>
+        <ButtonForm onClick={handleClear}>LIMPIAR</ButtonForm>
       </div>
 
     </form>
