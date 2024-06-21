@@ -36,22 +36,44 @@ export default function Form({ video, onClose }) {
     clearForm(setNuevoVideo)
   }
 
-  const handleSubmit = (e) => {
+  // const handleSubmit = (e) => {
+  //   e.preventDefault()
+  //   const validationErrors = validateForm(nuevoVideo)
+
+  //   setErrores(validationErrors)
+
+  //   if (Object.keys(validationErrors).length === 0) {
+  //     fetch(`https://alura-flix-api-one.vercel.app/videos/${video.id}`, {
+  //       method: 'PUT',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify(nuevoVideo)
+  //     }).then(res => res.json())
+  //       .then(data => {
+  //         onClose(null)
+  //         setVideos(prevVideos => prevVideos.map(v => v.id === video.id ? { ...v, ...data } : v))
+  //       })
+  //   }
+  // }
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const validationErrors = validateForm(nuevoVideo)
 
     setErrores(validationErrors)
 
     if (Object.keys(validationErrors).length === 0) {
-      fetch(`http://localhost:3000/videos/${video.id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(nuevoVideo)
-      }).then(res => res.json())
-        .then(data => {
-          onClose(null)
-          setVideos(prevVideos => prevVideos.map(v => v.id === video.id ? { ...v, ...data } : v))
+      try {
+        const response = await fetch(`https://my-json-server.typicode.com/ruanovaAlan/alura-flix-api/videos/${video.id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(nuevoVideo)
         })
+        const data = await response.json()
+        onClose(null)
+        setVideos(prevVideos => prevVideos.map(v => v.id === video.id ? { ...v, ...data } : v))
+      } catch (error) {
+        console.error('Error updating video:', error)
+      }
     }
   }
 

@@ -1,6 +1,6 @@
 export default function useDeleteVideo(setVideos) {
   const handleDelete = (id) => {
-    fetch(`http://localhost:3000/videos/${id}`, {
+    fetch(`https://my-json-server.typicode.com/ruanovaAlan/alura-flix-api/videos/${id}`, {
       method: 'DELETE'
     })
       .then(() => {

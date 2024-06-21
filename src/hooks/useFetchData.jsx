@@ -5,11 +5,11 @@ export default function useFetchData() {
   const [categorias, setCategorias] = useState([])
 
   useEffect(() => {
-    fetch('http://localhost:3000/videos')
+    fetch('https://my-json-server.typicode.com/ruanovaAlan/alura-flix-api/videos')
       .then(res => res.json())
       .then(data => setVideos(data))
 
-    fetch('http://localhost:3000/categorias')
+    fetch('https://my-json-server.typicode.com/ruanovaAlan/alura-flix-api/categorias')
       .then(res => res.json())
       .then(data => setCategorias(data))
   }, [])

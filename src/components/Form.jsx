@@ -39,22 +39,25 @@ export default function Form() {
     clearForm(setNuevoVideo)
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const validationErrors = validateForm(nuevoVideo)
 
     setErrores(validationErrors)
 
     if (Object.keys(validationErrors).length === 0) {
-      fetch('http://localhost:3000/videos', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(nuevoVideo)
-      }).then(res => res.json())
-        .then(data => {
-          navigate('/')
-          setVideos(prevVideos => [...prevVideos, data])
+      try {
+        const res = await fetch('https://my-json-server.typicode.com/ruanovaAlan/alura-flix-api/videos', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(nuevoVideo)
         })
+        const data = await res.json()
+        navigate('/')
+        setVideos(prevVideos => [...prevVideos, data])
+      } catch (error) {
+        console.error('Error al crear el video:', error)
+      }
     }
   }
 
